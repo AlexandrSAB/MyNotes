@@ -13,8 +13,6 @@
         android:orientation="vertical"
         >
 
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -23,7 +21,7 @@
             >
 
             <CheckBox
-                android:id="@+id/like"
+                android:id="@+id/important"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -35,16 +33,19 @@
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:text="Title"
+                android:maxLines="1"
                 android:textSize="@dimen/textTitle"
                 />
         </LinearLayout>
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/preview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Description"
+            android:text="Preview"
+            android:maxLines="1"
+            android:layout_marginStart="10sp"
             android:textSize="@dimen/textDescription"
             />
 

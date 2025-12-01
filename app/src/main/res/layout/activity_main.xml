@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:title="@string/app_name"
-        android:background="#A88DD9"
+        android:background="#68aa2b"
+
         />
 
 
@@ -26,6 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="LinearLayoutManager"
+            android:background="#68aa2b"
             tools:listitem="@layout/note_card_view" />
 
         <ImageButton

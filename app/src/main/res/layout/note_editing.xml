@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        >
+
+        <CheckBox
+            android:id="@+id/like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            />
+
+        <EditText
+            android:id="@+id/editTtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Title"
+            android:padding="@dimen/_Margin_1"
+            android:textSize="@dimen/textTitle"
+            />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editNoteText"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:hint="Введите текст заметки"
+        android:text="noteText"
+        android:inputType="textMultiLine"
+        android:gravity="top|start"
+        android:minLines="15"
+        android:padding="@dimen/_Margin_1"
+        android:textSize="@dimen/textDescription"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonBack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_Margin_1"
+            android:textSize="@dimen/_ButtonTextSize"
+            android:layout_weight="1"
+            android:text="@string/Button_c"
+
+            />
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_Margin_1"
+            android:textSize="@dimen/_ButtonTextSize"
+            android:text="@string/Button_s"
+            android:layout_weight="1"
+            />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+
+

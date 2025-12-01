@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        >
+
+        <CheckBox
+            android:id="@+id/like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Title"
+            android:padding="@dimen/_Margin_1"
+            android:textSize="@dimen/textTitle"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/noteText"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="noteText"
+        android:textSize="@dimen/textDescription"
+        android:padding="@dimen/_Margin_1"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_Margin_1"
+            android:textSize="@dimen/_ButtonTextSize"
+            android:text="@string/Button_b"
+
+            />
+
+        <Button
+            android:id="@+id/buttonEdit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_Margin_1"
+            android:textSize="@dimen/_ButtonTextSize"
+            android:text="@string/Button_e"
+            android:layout_weight="1"
+            />
+
+        <Button
+            android:id="@+id/buttonDelete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_Margin_1"
+            android:textSize="@dimen/_ButtonTextSize"
+            android:text="@string/Button_d"
+            android:layout_weight="1"
+            />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+
+

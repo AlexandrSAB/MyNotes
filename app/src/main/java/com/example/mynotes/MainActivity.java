@@ -1,13 +1,16 @@
 package com.example.mynotes;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -21,13 +24,14 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Constants{
 
     private static final int MY_DEFAULT_DURATION = 1000;
 
     private CardSource data;
     private MyAdapter adapter;
     private RecyclerView recyclerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +77,20 @@ public class MainActivity extends AppCompatActivity {
         // Получим источник данных для списка
         data = new CardSourceImpl(getResources()).init();
         initRecyclerView();
+        ImageButton buttonCreateNew = findViewById(R.id.buttonCreateNew);
+
+        buttonCreateNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                data.addCardData(new CardData("заметка " + data.size(),
+                        "текст заметки " + data.size(),
+
+                        false));
+                adapter.notifyItemInserted(data.size() - 1);
+                //recyclerView.scrollToPosition(data.size() - 1);
+                recyclerView.smoothScrollToPosition(data.size() - 1);
+            }
+        });
     }
 
     private void initRecyclerView(/*RecyclerView recyclerView, CardSource data*/) {
@@ -105,12 +123,19 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("DefaultLocale")
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(getApplicationContext(), String.format("Позиция - %d", position), Toast.LENGTH_SHORT).show();
+                CardData cardData = data.getCardData(position);
+                /*Toast.makeText(getApplicationContext(), String.format("Позиция - %d", position), Toast.LENGTH_SHORT).show();*/
+                /*CardData cardData = data.getCardData(position);*/
+                Intent runNoteViewActivity = new Intent(MainActivity.this, NoteViewActivity.class);
+                runNoteViewActivity.putExtra(TITLE, cardData.getTitle().toString());
+                runNoteViewActivity.putExtra(NOTETEXT, cardData.getNoteText().toString());
+                runNoteViewActivity.putExtra(ISIMPORTANT, cardData.getImportant());
+                startActivity(runNoteViewActivity);
             }
         });
     }
 
-    /*@Override
+    @Override
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
@@ -120,20 +145,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         int position = adapter.getMenuPosition();
-        if (item.getItemId() == R.id.action_update) {
-            data.updateCardData(position,
+        if (item.getItemId() == R.id.action_edit) {
+            /*data.updateCardData(position,
                     new CardData("Кадр " + position,
                             data.getCardData(position).getDescription(),
                             data.getCardData(position).getPicture(),
                             false));
             adapter.notifyItemChanged(position);
-            return true;
+            return true;*/
         } else if (item.getItemId() == R.id.action_delete) {
             data.deleteCardData(position);
             adapter.notifyItemRemoved(position);
             return true;
         }
         return super.onContextItemSelected(item);
-    }*/
+    }
 
 }

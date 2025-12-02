@@ -146,13 +146,8 @@ public class MainActivity extends AppCompatActivity implements Constants{
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         int position = adapter.getMenuPosition();
         if (item.getItemId() == R.id.action_edit) {
-            /*data.updateCardData(position,
-                    new CardData("Кадр " + position,
-                            data.getCardData(position).getDescription(),
-                            data.getCardData(position).getPicture(),
-                            false));
-            adapter.notifyItemChanged(position);
-            return true;*/
+            Intent runNoteEditActivity = new Intent(MainActivity.this, NoteEditActivity.class);
+            startActivity(runNoteEditActivity);
         } else if (item.getItemId() == R.id.action_delete) {
             data.deleteCardData(position);
             adapter.notifyItemRemoved(position);

@@ -1,5 +1,6 @@
 package com.example.mynotes;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -45,20 +46,20 @@ public class NoteViewActivity extends AppCompatActivity {
         checkBoxImportant.setChecked(isImportant);
 
 
-        /*String name = getIntent().getExtras().getString(YOUR_NAME);
-        String age = getIntent().getExtras().getString(YOUR_AGE);
-
-        String sayCongratulations = getString(R.string.say_congratulations) + name + "!";
-        String sayAge = getString(R.string.say_age) + age + getString(R.string.say_years);
-
-        txtCongratulations.setText(sayCongratulations);
-        txtAge.setText(sayAge);*/
-
         Button buttonBack = findViewById(R.id.buttonBack);
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        Button buttonEdit = findViewById(R.id.buttonEdit);
+        buttonEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent runNoteEditActivity = new Intent(NoteViewActivity.this, NoteEditActivity.class);
+                startActivity(runNoteEditActivity);
             }
         });
 

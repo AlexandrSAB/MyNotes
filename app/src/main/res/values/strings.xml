@@ -5,6 +5,8 @@
     <string name="Button_b"><![CDATA[<-]]></string>
     <string name="Button_s">Save</string>
     <string name="Button_c">Cancel</string>
+    <string name="edit">Редактировать</string>
+    <string name="delete">Удалить</string>
 
 
 </resources>

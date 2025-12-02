@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title1">Овощи</string>
+    <string name="title2">Фрукты</string>
+    <string name="title3">Молочные продукты</string>
+    <string name="title4">Бытовая химия</string>
+    <string name="title5">заметка 5</string>
+    <string name="title6">заметка 6</string>
+    <string name="title7">заметка 7</string>
+    <string name="title8">заметка 8</string>
+    <string name="title9">заметка 9</string>
+    <string name="title10">заметка 10</string>
+    <string name="title11">заметка 11</string>
+    <string name="title12">заметка 12</string>
+    <string name="title13">заметка 13</string>
+
+    <string name="description1">картошка \n морковь \n огурцы</string>
+    <string name="description2">апельсины \n мандарины \n бананы</string>
+    <string name="description3">молоко \n творог \n сметана</string>
+    <string name="description4">стиральный порошок \n мыло \n моющее средство</string>
+    <string name="description5">текст заметки 5</string>
+    <string name="description6">текст заметки 6</string>
+    <string name="description7">текст заметки 7</string>
+    <string name="description8">текст заметки 8</string>
+    <string name="description9">текст заметки 9</string>
+    <string name="description10">текст заметки 10</string>
+    <string name="description11">текст заметки 11</string>
+    <string name="description12">текст заметки 12</string>
+    <string name="description13">текст заметки 13</string>
+
+    <string name="important1">1</string>
+    <string name="important2">0</string>
+    <string name="important3">1</string>
+    <string name="important4">0</string>
+    <string name="important5">0</string>
+    <string name="important6">0</string>
+    <string name="important7">0</string>
+    <string name="important8">0</string>
+    <string name="important9">0</string>
+    <string name="important10">0</string>
+    <string name="important11">0</string>
+    <string name="important12">0</string>
+    <string name="important13">0</string>
+
+
+</resources>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="titles">
+        <item>@string/title1</item>
+        <item>@string/title2</item>
+        <item>@string/title3</item>
+        <item>@string/title4</item>
+        <item>@string/title5</item>
+        <item>@string/title6</item>
+        <item>@string/title7</item>
+        <item>@string/title8</item>
+        <item>@string/title9</item>
+        <item>@string/title10</item>
+        <item>@string/title11</item>
+        <item>@string/title12</item>
+        <item>@string/title13</item>
+    </string-array>
+    <string-array name="noteText">
+        <item>@string/description1</item>
+        <item>@string/description2</item>
+        <item>@string/description3</item>
+        <item>@string/description4</item>
+        <item>@string/description5</item>
+        <item>@string/description6</item>
+        <item>@string/description7</item>
+        <item>@string/description8</item>
+        <item>@string/description9</item>
+        <item>@string/description10</item>
+        <item>@string/description11</item>
+        <item>@string/description12</item>
+        <item>@string/description13</item>
+    </string-array>
+
+    <string-array name="isImportant">
+        <item>@string/important1</item>
+        <item>@string/important2</item>
+        <item>@string/important3</item>
+        <item>@string/important4</item>
+        <item>@string/important5</item>
+        <item>@string/important6</item>
+        <item>@string/important7</item>
+        <item>@string/important8</item>
+        <item>@string/important9</item>
+        <item>@string/important10</item>
+        <item>@string/important11</item>
+        <item>@string/important12</item>
+        <item>@string/important13</item>
+    </string-array>
+
+
+</resources>

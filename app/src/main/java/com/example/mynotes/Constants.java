@@ -5,6 +5,8 @@ public interface Constants {
     String NOTETEXT = "NOTETEXT";
     String ISIMPORTANT = "ISIMPORTANT";
 
+    String POSITION = "POSITION";
+
 
 }
 

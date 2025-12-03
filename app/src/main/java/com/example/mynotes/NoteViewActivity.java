@@ -38,6 +38,7 @@ public class NoteViewActivity extends AppCompatActivity {
         String noteTitle = getIntent().getExtras().getString(TITLE);
         String noteText = getIntent().getExtras().getString(NOTETEXT);
         isImportant = getIntent().getBooleanExtra(ISIMPORTANT, false);
+        int notePosition = getIntent().getExtras().getInt(POSITION);
 
 
 
@@ -59,6 +60,7 @@ public class NoteViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent runNoteEditActivity = new Intent(NoteViewActivity.this, NoteEditActivity.class);
+                runNoteEditActivity.putExtra(POSITION, notePosition);
                 startActivity(runNoteEditActivity);
             }
         });

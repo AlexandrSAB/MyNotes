@@ -22,7 +22,7 @@
             />
 
         <EditText
-            android:id="@+id/editTtitle"
+            android:id="@+id/editTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"

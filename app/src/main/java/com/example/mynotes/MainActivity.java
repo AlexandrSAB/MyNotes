@@ -24,13 +24,17 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
+
 public class MainActivity extends AppCompatActivity implements Constants{
-
     private static final int MY_DEFAULT_DURATION = 1000;
-
     private CardSource data;
     private MyAdapter adapter;
     private RecyclerView recyclerView;
+
+    private SharedPreferences sharedPref = null;
+
+
 
 
     @Override
@@ -43,6 +47,10 @@ public class MainActivity extends AppCompatActivity implements Constants{
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        sharedPref = getSharedPreferences("MyNotesPreferences", MODE_PRIVATE);
+
+
         setSupportActionBar(findViewById(R.id.toolbar));
         initView();
     }
@@ -75,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements Constants{
     private void initView() {
         recyclerView = findViewById(R.id.recycler_view_lines);
         // Получим источник данных для списка
-        data = new CardSourceImpl(getResources()).init();
+        data = new CardSourceImpl(sharedPref).init();
         initRecyclerView();
         ImageButton buttonCreateNew = findViewById(R.id.buttonCreateNew);
 
@@ -124,12 +132,12 @@ public class MainActivity extends AppCompatActivity implements Constants{
             @Override
             public void onItemClick(View view, int position) {
                 CardData cardData = data.getCardData(position);
-                /*Toast.makeText(getApplicationContext(), String.format("Позиция - %d", position), Toast.LENGTH_SHORT).show();*/
-                /*CardData cardData = data.getCardData(position);*/
+
                 Intent runNoteViewActivity = new Intent(MainActivity.this, NoteViewActivity.class);
                 runNoteViewActivity.putExtra(TITLE, cardData.getTitle().toString());
                 runNoteViewActivity.putExtra(NOTETEXT, cardData.getNoteText().toString());
                 runNoteViewActivity.putExtra(ISIMPORTANT, cardData.getImportant());
+                runNoteViewActivity.putExtra(POSITION, position);
                 startActivity(runNoteViewActivity);
             }
         });
@@ -147,6 +155,7 @@ public class MainActivity extends AppCompatActivity implements Constants{
         int position = adapter.getMenuPosition();
         if (item.getItemId() == R.id.action_edit) {
             Intent runNoteEditActivity = new Intent(MainActivity.this, NoteEditActivity.class);
+            runNoteEditActivity.putExtra(POSITION, position);
             startActivity(runNoteEditActivity);
         } else if (item.getItemId() == R.id.action_delete) {
             data.deleteCardData(position);

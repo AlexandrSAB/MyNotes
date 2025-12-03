@@ -6,6 +6,9 @@ class CardData {
     private String noteText;
     private boolean isImportant;
 
+    public CardData() {
+    }
+
     public CardData(String title, String noteText, boolean isImportant) {
         this.title = title;
         this.noteText = noteText;

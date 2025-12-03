@@ -27,10 +27,22 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="LinearLayoutManager"
-            android:background="#68aa2b"
+            android:background="@color/backGround"
             tools:listitem="@layout/note_card_view" />
 
-        <ImageButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/buttonCreateNew"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="20dp"
+            app:backgroundTint="@color/backGround"
+            app:maxImageSize="55dp"
+            app:fabCustomSize="72dp"
+            app:tint="@android:color/white"
+            app:srcCompat="@android:drawable/ic_menu_add" />
+
+        <!--<ImageButton
             android:id="@+id/buttonCreateNew"
             android:layout_width="@dimen/_ButtonCreateNewDim"
             android:layout_height="@dimen/_ButtonCreateNewDim"
@@ -41,7 +53,7 @@
             android:scaleType="centerInside"
             android:elevation="0dp"
             android:stateListAnimator="@null"
-            />
+            />-->
 
     </FrameLayout>
 

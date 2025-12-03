@@ -9,4 +9,6 @@ public interface CardSource {
     void updateCardData(int position, CardData cardData);
     void addCardData(CardData cardData);
     void clearCardData();
+
+    void saveData();
 }

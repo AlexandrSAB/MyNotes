@@ -53,7 +53,8 @@ public class CardSourceImpl implements CardSource {
         return this;
     }
 
-    private void saveData() {
+    @Override
+    public void saveData() {
         String jsonCards = new GsonBuilder().create().toJson(dataSource);
         sharedPref.edit().putString(KEY, jsonCards).apply();
     }

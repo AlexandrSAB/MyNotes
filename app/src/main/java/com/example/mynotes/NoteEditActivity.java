@@ -24,6 +24,11 @@ public class NoteEditActivity extends AppCompatActivity{
 
     private CheckBox checkBoxImportant;
     private boolean isImportant;
+    private EditText titleEditText;
+    private EditText textEditText;
+    private int notePosition;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,19 +45,21 @@ public class NoteEditActivity extends AppCompatActivity{
 
         data = new CardSourceImpl(sharedPref).init();
 
-        int notePosition = getIntent().getExtras().getInt(POSITION);
+        notePosition = getIntent().getExtras().getInt(POSITION);
 
 
 
-        EditText title = findViewById(R.id.editTitle);
-        EditText text = findViewById(R.id.editNoteText);
+        titleEditText = findViewById(R.id.editTitle);
+        textEditText = findViewById(R.id.editNoteText);
         checkBoxImportant = findViewById(R.id.editImportant);
 
         CardData cardData = data.getCardData(notePosition);
 
-        title.setText(cardData.getTitle());
-        text.setText(cardData.getNoteText());
+        titleEditText.setText(cardData.getTitle());
+        textEditText.setText(cardData.getNoteText());
         checkBoxImportant.setChecked(cardData.getImportant());
+
+
 
 
 
@@ -63,5 +70,29 @@ public class NoteEditActivity extends AppCompatActivity{
                 finish();
             }
         });
+
+        Button buttonSave = findViewById(R.id.buttonSave);
+        buttonSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveNote();
+                finish();
+
+            }
+        });
+    }
+
+    private void saveNote() {
+        String title = titleEditText.getText().toString().trim();
+        String text = textEditText.getText().toString().trim();
+        boolean isImportant = checkBoxImportant.isChecked();
+
+        CardData updatedCardData = new CardData(title, text, isImportant);
+        if (title.isEmpty()) {
+            title = "Без названия";
+        }
+        data.updateCardData(notePosition, updatedCardData);
+        data.saveData();
+
     }
 }

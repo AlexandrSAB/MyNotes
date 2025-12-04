@@ -90,9 +90,8 @@ public class MainActivity extends AppCompatActivity implements Constants{
         buttonCreateNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                data.addCardData(new CardData("заметка " + data.size(),
-                        "текст заметки " + data.size(),
-
+                data.addCardData(new CardData("Без названия",
+                        "",
                         false));
                 adapter.notifyItemInserted(data.size() - 1);
                 //recyclerView.scrollToPosition(data.size() - 1);
@@ -163,6 +162,14 @@ public class MainActivity extends AppCompatActivity implements Constants{
             return true;
         }
         return super.onContextItemSelected(item);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        data = new CardSourceImpl(sharedPref).init();
+        adapter.setCardSourse(data);
+        adapter.notifyDataSetChanged();
     }
 
 }

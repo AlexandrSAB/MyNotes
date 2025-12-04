@@ -57,20 +57,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return dataSource.size();
     }
 
-    // Сеттер слушателя нажатий
     public void SetOnItemClickListener(OnItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
     }
 
-    // Интерфейс для обработки нажатий, как в ListView
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
     }
 
-    // Этот класс хранит связь между данными и элементами View
-    // Сложные данные могут потребовать несколько View на
-    // один пункт списка
-    public class ViewHolder extends RecyclerView.ViewHolder {
+        public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView title;
         private TextView preview;
@@ -82,6 +77,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             title = itemView.findViewById(R.id.title);
             important = itemView.findViewById(R.id.important);
             preview = itemView.findViewById(R.id.preview);
+
+            important.setClickable(false);
+            important.setFocusable(false);
 
             registerContextMenu(itemView);
 
@@ -126,6 +124,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             preview.setText(cardData.getNoteText());
             important.setChecked(cardData.getImportant());
         }
+    }
+
+    public void setCardSourse(CardSource dataSource) {
+        this.dataSource = dataSource;
+        notifyDataSetChanged();
     }
 
 

@@ -1,7 +1,6 @@
 package com.example.mynotes;
 
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,21 +20,14 @@ public class CardSourceImpl implements CardSource {
     public static final String KEY = "key";
 
     private List<CardData> dataSource;
-/*    private Resources resources;*/
+
 
     CardSourceImpl(SharedPreferences sharedPref) {
         this.sharedPref = sharedPref;
         dataSource = new ArrayList<>(10);
-/*        this.resources = resources;*/
     }
 
     public CardSourceImpl init() {
-/*        String[] titles = resources.getStringArray(R.array.titles);
-        String[] texts = resources.getStringArray(R.array.noteText);
-        String[] importants = resources.getStringArray(R.array.isImportant);
-        for (int i = 0; i < titles.length; i++) {
-            dataSource.add(new CardData(titles[i], texts[i], importants[i].equals("1")));
-        }*/
 
         String savedCards = sharedPref.getString(KEY, null);
         if (savedCards != null && !savedCards.isEmpty()) {

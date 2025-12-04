@@ -23,7 +23,7 @@ public class NoteEditActivity extends AppCompatActivity{
     private CardSource data;
 
     private CheckBox checkBoxImportant;
-    private boolean isImportant;
+
     private EditText titleEditText;
     private EditText textEditText;
     private int notePosition;
@@ -41,27 +41,7 @@ public class NoteEditActivity extends AppCompatActivity{
             return insets;
         });
 
-        sharedPref = getSharedPreferences("MyNotesPreferences", MODE_PRIVATE);
-
-        data = new CardSourceImpl(sharedPref).init();
-
-        notePosition = getIntent().getExtras().getInt(POSITION);
-
-
-
-        titleEditText = findViewById(R.id.editTitle);
-        textEditText = findViewById(R.id.editNoteText);
-        checkBoxImportant = findViewById(R.id.editImportant);
-
-        CardData cardData = data.getCardData(notePosition);
-
-        titleEditText.setText(cardData.getTitle());
-        textEditText.setText(cardData.getNoteText());
-        checkBoxImportant.setChecked(cardData.getImportant());
-
-
-
-
+        noteEditActivityUpdate();
 
         Button buttonCancel = findViewById(R.id.buttonCancel);
         buttonCancel.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +60,22 @@ public class NoteEditActivity extends AppCompatActivity{
 
             }
         });
+    }
+
+    private void noteEditActivityUpdate() {
+        sharedPref = getSharedPreferences("MyNotesPreferences", MODE_PRIVATE);
+        data = new CardSourceImpl(sharedPref).init();
+        notePosition = getIntent().getExtras().getInt(POSITION);
+
+        titleEditText = findViewById(R.id.editTitle);
+        textEditText = findViewById(R.id.editNoteText);
+        checkBoxImportant = findViewById(R.id.editImportant);
+
+        CardData cardData = data.getCardData(notePosition);
+
+        titleEditText.setText(cardData.getTitle());
+        textEditText.setText(cardData.getNoteText());
+        checkBoxImportant.setChecked(cardData.getImportant());
     }
 
     private void saveNote() {

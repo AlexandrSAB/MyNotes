@@ -42,18 +42,6 @@
             app:tint="@android:color/white"
             app:srcCompat="@android:drawable/ic_menu_add" />
 
-        <!--<ImageButton
-            android:id="@+id/buttonCreateNew"
-            android:layout_width="@dimen/_ButtonCreateNewDim"
-            android:layout_height="@dimen/_ButtonCreateNewDim"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="15dp"
-            android:src="@drawable/add_icon"
-            android:background="@android:color/transparent"
-            android:scaleType="centerInside"
-            android:elevation="0dp"
-            android:stateListAnimator="@null"
-            />-->
 
     </FrameLayout>
 

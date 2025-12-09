@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -70,6 +71,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         private TextView title;
         private TextView preview;
         private CheckBox important;
+        private LinearLayout linearLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -77,6 +79,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             title = itemView.findViewById(R.id.title);
             important = itemView.findViewById(R.id.important);
             preview = itemView.findViewById(R.id.preview);
+            linearLayout = itemView.findViewById(R.id.linearLayout);
 
             important.setClickable(false);
             important.setFocusable(false);
@@ -84,7 +87,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             registerContextMenu(itemView);
 
             // Обработчик нажатий на этом ViewHolder
-            title.setOnClickListener(new View.OnClickListener() {
+            linearLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (itemClickListener != null) {
@@ -94,7 +97,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             });
 
             // Обработчик нажатий на картинке
-            title.setOnLongClickListener(new View.OnLongClickListener() {
+            linearLayout.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
                     menuPosition = getLayoutPosition();

@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.mynotes"
-        minSdk = 24
+        minSdk = 31  //по умолчанию 24
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -43,4 +43,7 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
 
     implementation("com.google.code.gson:gson:2.13.2")
+    implementation("androidx.core:core-splashscreen:1.0.0")
+    implementation("com.google.android.material:material:1.10.0")
+    /*implementation(libs.material)*/
 }

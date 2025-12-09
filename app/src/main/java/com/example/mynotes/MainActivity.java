@@ -3,11 +3,13 @@ package com.example.mynotes;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.Toast;
 import android.widget.ImageButton;
@@ -25,6 +27,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
+
 
 public class MainActivity extends AppCompatActivity implements Constants{
     private static final int MY_DEFAULT_DURATION = 1000;
@@ -47,13 +50,46 @@ public class MainActivity extends AppCompatActivity implements Constants{
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        /*setSplashScreenLoadingParameters();*/
+
+
 
         sharedPref = getSharedPreferences("MyNotesPreferences", MODE_PRIVATE);
 
 
         setSupportActionBar(findViewById(R.id.toolbar));
+
         initView();
+
+
     }
+
+    /*private void setSplashScreenLoadingParameters() {
+
+
+        // Set up an OnPreDrawListener to the root view.
+        final View content = findViewById(android.R.id.content);
+        content.getViewTreeObserver().addOnPreDrawListener(
+                new ViewTreeObserver.OnPreDrawListener() {
+                    @Override
+                    public boolean onPreDraw() {
+                        // Check whether the initial data is ready.
+                        if (isMainActivityReady()) {
+                            // The content is ready. Start drawing.
+                            content.getViewTreeObserver().removeOnPreDrawListener(this);
+                            return true;
+                        } else {
+                            // The content isn't ready. Suspend.
+                            return false;
+                        }
+                    }
+                });
+    }
+
+    private boolean isMainActivityReady() {
+        View mainContent = findViewById(R.id.main);
+        return mainContent != null && mainContent.isLaidOut();
+    }*/
 
 /*    @Override
     public boolean onCreateOptionsMenu(Menu menu) {

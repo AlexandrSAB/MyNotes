@@ -2,75 +2,110 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:id="@+id/main"
+    android:background="@color/backGroundEdit"
     >
+
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="@dimen/_Margin_1"
+
 
         >
 
-        <CheckBox
+        <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/editImportant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:buttonTint="@color/checkBoxColor"
             android:layout_gravity="center"
+
             />
 
-        <EditText
-            android:id="@+id/editTitle"
-            android:layout_width="match_parent"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/titleInputLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="start"
-            android:text="Title"
-            android:padding="@dimen/_Margin_1"
-            android:textSize="@dimen/textTitle"
-            />
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            app:counterEnabled="false"
+
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Название заметки"
+                android:maxLines="1"
+                android:textSize="@dimen/textTitle"
+                android:inputType="textCapSentences" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/editNoteText"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/noteInputLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:hint="Введите текст заметки"
-        android:text="noteText"
-        android:inputType="textMultiLine"
-        android:gravity="top|start"
-        android:minLines="15"
+        android:layout_marginTop="16dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="1000"
+        app:helperText="Основной текст заметки"
+        app:helperTextEnabled="true"
         android:padding="@dimen/_Margin_1"
-        android:textSize="@dimen/textDescription"
-        />
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editNoteText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Введите текст заметки..."
+            android:gravity="top|start"
+            android:inputType="textMultiLine|textCapSentences"
+            android:minLines="15"
+            android:textSize="@dimen/textDescription"
+            android:padding="12dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="@dimen/_Margin_1">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonCancel"
+            style="@style/Widget.MyNotes.OutlinedButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_Margin_1"
-            android:textSize="@dimen/_ButtonTextSize"
+            android:layout_marginEnd="8dp"
             android:layout_weight="1"
             android:text="@string/Button_c"
+            android:textSize="@dimen/_ButtonTextSize"
+            app:backgroundTint="@color/buttonColor"
+             />
 
-            />
-
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonSave"
+            style="@style/Widget.MyNotes.OutlinedButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_Margin_1"
-            android:textSize="@dimen/_ButtonTextSize"
-            android:text="@string/Button_s"
+            android:layout_marginStart="8dp"
             android:layout_weight="1"
-            />
+            app:backgroundTint="@color/buttonColor"
+            android:text="@string/Button_s"
+            android:textSize="@dimen/_ButtonTextSize" />
 
 
     </LinearLayout>

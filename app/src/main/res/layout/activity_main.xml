@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/backGround"
     tools:context=".MainActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -13,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:title="@string/app_name"
-        android:background="#68aa2b"
+        android:background="@color/backGround"
+        app:titleTextAppearance="@style/ToolbarTitleStyle"
 
         />
 
@@ -26,8 +28,10 @@
             android:id="@+id/recycler_view_lines"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="LinearLayoutManager"
             android:background="@color/backGround"
+            android:paddingStart="@dimen/padding"
+            android:paddingEnd="@dimen/padding"
+            app:layoutManager="LinearLayoutManager"
             tools:listitem="@layout/note_card_view" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -36,13 +40,15 @@
             android:layout_height="70dp"
             android:layout_gravity="bottom|end"
             android:layout_margin="20dp"
-            app:backgroundTint="@color/backGround"
+            app:backgroundTint="@color/buttonColor"
             app:maxImageSize="55dp"
             app:fabCustomSize="72dp"
-            app:tint="@android:color/white"
+            app:strokeWidth="@dimen/strokeWidth"
+            app:strokeColor="@color/strokeColor"
+            app:tint="#FFFFFFFF"
             app:srcCompat="@android:drawable/ic_menu_add" />
-
 
     </FrameLayout>
 
 </LinearLayout>
+

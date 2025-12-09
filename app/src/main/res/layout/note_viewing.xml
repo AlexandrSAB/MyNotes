@@ -2,8 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:id="@+id/main"
+    android:background="@color/backGroundEdit"
+
     >
 
 
@@ -14,11 +17,13 @@
 
         >
 
-        <CheckBox
+        <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/important"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            app:buttonTint="@color/checkBoxColor"
+            app:backgroundTint="@color/buttonColor"
 
             />
 
@@ -36,7 +41,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:padding="@dimen/_Margin_1">
 
         <TextView
             android:id="@+id/noteText"
@@ -54,9 +60,48 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="@dimen/_Margin_1">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonBack"
+            style="@style/Widget.MyNotes.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/Button_b"
+            android:textSize="@dimen/_ButtonTextSize"
+            app:backgroundTint="@color/buttonColor"
+
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonEdit"
+            style="@style/Widget.MyNotes.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_weight="1"
+            android:text="@string/Button_e"
+            android:textSize="@dimen/_ButtonTextSize"
+            app:backgroundTint="@color/buttonColor"
+             />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonDelete"
+            style="@style/Widget.MyNotes.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="@string/Button_d"
+            android:textSize="@dimen/_ButtonTextSize"
+            app:backgroundTint="@color/buttonColor"
+
+             />
+
+
+        <!--<Button
             android:id="@+id/buttonBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -84,7 +129,7 @@
             android:textSize="@dimen/_ButtonTextSize"
             android:text="@string/Button_d"
             android:layout_weight="1"
-            />
+            />-->
 
 
     </LinearLayout>

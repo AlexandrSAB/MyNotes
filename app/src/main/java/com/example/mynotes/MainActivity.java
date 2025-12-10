@@ -1,7 +1,12 @@
 package com.example.mynotes;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.ContextMenu;
@@ -17,7 +22,11 @@ import android.widget.ImageButton;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -36,6 +45,12 @@ public class MainActivity extends AppCompatActivity implements Constants{
     private RecyclerView recyclerView;
 
     private SharedPreferences sharedPref = null;
+
+    private static final String CHANNEL_ID = "CHANNEL_ID";
+    private static final int NOTIFICATION_ID = 42;
+
+    private String notificationTitle;
+    private String notificationText;
 
 
 
@@ -132,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements Constants{
                 adapter.notifyItemInserted(data.size() - 1);
                 //recyclerView.scrollToPosition(data.size() - 1);
                 recyclerView.smoothScrollToPosition(data.size() - 1);
+                showNotification("Уведомление", "Заметка создана");
             }
         });
     }
@@ -195,6 +211,7 @@ public class MainActivity extends AppCompatActivity implements Constants{
         } else if (item.getItemId() == R.id.action_delete) {
             data.deleteCardData(position);
             adapter.notifyItemRemoved(position);
+            showNotification("Уведомление", "Заметка удалена");
             return true;
         }
         return super.onContextItemSelected(item);
@@ -206,6 +223,65 @@ public class MainActivity extends AppCompatActivity implements Constants{
         data = new CardSourceImpl(sharedPref).init();
         adapter.setCardSourse(data);
         adapter.notifyDataSetChanged();
+    }
+
+
+
+    void showNotification(String notificationTitle, String notificationText) {
+        // Создаем NotificationChannel, но это делается только для API 26+
+        // Потому что NotificationChannel -- это новый класс и его нет в support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            createNotificationChannel();
+        }
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
+        // Все цветные иконки отображаются только в оттенках серого
+        builder.setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setContentTitle(notificationTitle)
+                .setContentText(notificationText)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                ActivityCompat.requestPermissions(
+                        this,
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                        NOTIFICATION_ID); // константа вашего выбора
+            }
+            return;
+        }
+        NotificationManagerCompat.from(this).notify(NOTIFICATION_ID, builder.build());
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == NOTIFICATION_ID && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            // Пользователь разрешил показывать уведомления
+            showNotification(notificationTitle, notificationText); // Можно показать уведомление повторно
+        } else {
+            // Пользователь отказался давать разрешение
+            Toast.makeText(this, "Разрешение на уведомления не предоставлено.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void createNotificationChannel() {
+        String name = "Name";
+        String descriptionText = "Description";
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+        channel.setDescription(descriptionText);
+
+        // Регистрируем канал в системе
+        NotificationManager notificationManager = getSystemService(NotificationManager.class);
+        notificationManager.createNotificationChannel(channel);
     }
 
 }

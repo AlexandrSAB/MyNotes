@@ -66,9 +66,10 @@ public class CardSourceImpl implements CardSource {
 
     @Override
     public void deleteCardData(int position) {
-
         dataSource.remove(position);
         saveData();
+
+
     }
 
     @Override
@@ -89,5 +90,8 @@ public class CardSourceImpl implements CardSource {
         dataSource.clear();
         saveData();
     }
+
+
+
 
 }

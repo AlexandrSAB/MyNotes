@@ -17,10 +17,11 @@ import static com.example.mynotes.Constants.*;
 
 import android.content.SharedPreferences;
 
-public class NoteViewActivity extends AppCompatActivity {
+public class NoteViewActivity extends AppCompatActivity implements NoteViewView{
 
     private SharedPreferences sharedPref = null;
-    private CardSource data;
+
+    private NoteViewPresenter presenter;
 
     private CheckBox checkBoxImportant;
 
@@ -39,23 +40,22 @@ public class NoteViewActivity extends AppCompatActivity {
             return insets;
         });
 
-        noteViewActivityUpdate();
+        sharedPref = getSharedPreferences("MyNotesPreferences", MODE_PRIVATE);
+        presenter = new NoteViewPresenter(this, sharedPref);
+
+        notePosition = getIntent().getExtras().getInt(POSITION);
+
+        initViews();
+
+
 
         Button buttonBack = findViewById(R.id.buttonBack);
-        buttonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        buttonBack.setOnClickListener(v -> finish());
 
         Button buttonDelete = findViewById(R.id.buttonDelete);
-        buttonDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                data.deleteCardData(notePosition);
-                finish();
-            }
+        buttonDelete.setOnClickListener(v -> {
+            presenter.deleteCard(notePosition);
+            finish();
         });
 
         Button buttonEdit = findViewById(R.id.buttonEdit);
@@ -69,28 +69,25 @@ public class NoteViewActivity extends AppCompatActivity {
         });
     }
 
-    public void noteViewActivityUpdate() {
-        sharedPref = getSharedPreferences("MyNotesPreferences", MODE_PRIVATE);
-        data = new CardSourceImpl(sharedPref).init();
-        notePosition = getIntent().getExtras().getInt(POSITION);
+    public void initViews() {
 
         titleViewText = findViewById(R.id.title);
         textViewText = findViewById(R.id.noteText);
         checkBoxImportant = findViewById(R.id.important);
-
-        CardData cardData = data.getCardData(notePosition);
-        titleViewText.setText(cardData.getTitle());
-        textViewText.setText(cardData.getNoteText());
-        checkBoxImportant.setChecked(cardData.getImportant());
 
         checkBoxImportant.setClickable(false);
         checkBoxImportant.setFocusable(false);
     }
 
     @Override
+    public void showCard(CardData card) {
+        titleViewText.setText(card.getTitle());
+        textViewText.setText(card.getNoteText());
+        checkBoxImportant.setChecked(card.getImportant());
+    }
+    @Override
     public void onResume() {
         super.onResume();
-        data = new CardSourceImpl(sharedPref).init();
-        noteViewActivityUpdate();
+        presenter.loadCard(notePosition);
     }
 }
